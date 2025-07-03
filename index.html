@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Builder Pro</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="builder.css">
+</head>
+<body>
+  <div class="builder-container">
+    <h1><i class="fas fa-rocket"></i> Portfolio Builder Pro</h1>
+    
+    <div class="app-container">
+      <!-- Input Form Section -->
+      <div class="form-section">
+        <div class="section-toggle">
+          <h3><i class="fas fa-cog"></i> Portfolio Sections</h3>
+          <div class="toggle-grid">
+            <label class="toggle-item">
+              <input type="checkbox" id="toggle-about" checked> About Section
+            </label>
+            <label class="toggle-item">
+              <input type="checkbox" id="toggle-skills" checked> Skills Section
+            </label>
+            <label class="toggle-item">
+              <input type="checkbox" id="toggle-services" checked> Services Section
+            </label>
+            <label class="toggle-item">
+              <input type="checkbox" id="toggle-projects" checked> Projects Section
+            </label>
+            <label class="toggle-item">
+              <input type="checkbox" id="toggle-experience" checked> Experience Section
+            </label>
+            <label class="toggle-item">
+              <input type="checkbox" id="toggle-testimonials" checked> Testimonials Section
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <h3><i class="fas fa-user"></i> Basic Information</h3>
+          <label>Your Full Name</label>
+          <input type="text" id="name" placeholder="John Doe">
+          
+          <label>Profession/Title</label>
+          <input type="text" id="title" placeholder="Frontend Developer">
+          
+          <label>Short Bio/Headline</label>
+          <textarea id="bio" placeholder="A passionate developer creating modern web experiences"></textarea>
+          
+         <label>Profile Image</label>
+<div class="file-upload">
+  <input type="file" id="profileImage" style="display: none;" />
+  <span id="profileImageName">No file chosen</span>
+  <button type="button" class="btn-upload" onclick="document.getElementById('profileImage').click()">Choose File</button>
+</div>
+
+<label>Logo (optional)</label>
+<div class="file-upload">
+  <input type="file" id="logo" style="display: none;" accept="image/*">
+  <span id="logoName">No file chosen</span>
+  <button type="button" class="btn-upload" onclick="document.getElementById('logo').click()">Choose File</button>
+</div>
+
+          
+          <label>Theme Color</label>
+          <input type="color" id="themeColor" value="#3b82f6">
+        </div>
+        
+        <div class="form-group" id="skills-group">
+          <h3><i class="fas fa-star"></i> Skills</h3>
+          <label>Your Skills (comma separated)</label>
+          <input type="text" id="skills" placeholder="HTML, CSS, JavaScript, React">
+        </div>
+        
+        <div class="form-group" id="services-group">
+          <h3><i class="fas fa-briefcase"></i> Services</h3>
+          <div id="services-container">
+            <div class="form-array">
+              <!-- Services will be added here dynamically -->
+            </div>
+          </div>
+          <button class="add-btn" onclick="addService()"><i class="fas fa-plus"></i> Add Service</button>
+        </div>
+        
+        <div class="form-group" id="projects-group">
+          <h3><i class="fas fa-project-diagram"></i> Projects</h3>
+          <div id="projects-container">
+            <div class="form-array">
+              <!-- Projects will be added here dynamically -->
+            </div>
+          </div>
+          <button class="add-btn" onclick="addProject()"><i class="fas fa-plus"></i> Add Project</button>
+        </div>
+        
+        <div class="form-group" id="experience-group">
+          <h3><i class="fas fa-building"></i> Experience</h3>
+          <div id="experience-container">
+            <div class="form-array">
+              <!-- Experience will be added here dynamically -->
+            </div>
+          </div>
+          <button class="add-btn" onclick="addExperience()"><i class="fas fa-plus"></i> Add Experience</button>
+        </div>
+        
+        <div class="form-group" id="education-group">
+          <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+          <div id="education-container">
+            <div class="form-array">
+              <!-- Education will be added here dynamically -->
+            </div>
+          </div>
+          <button class="add-btn" onclick="addEducation()"><i class="fas fa-plus"></i> Add Education</button>
+        </div>
+        
+        <div class="form-group" id="testimonials-group">
+          <h3><i class="fas fa-comment"></i> Testimonials</h3>
+          <div id="testimonials-container">
+            <div class="form-array">
+              <!-- Testimonials will be added here dynamically -->
+            </div>
+          </div>
+          <button class="add-btn" onclick="addTestimonial()"><i class="fas fa-plus"></i> Add Testimonial</button>
+        </div>
+        
+        <div class="form-group">
+          <h3><i class="fas fa-envelope"></i> Contact Information</h3>
+          <label>Email</label>
+          <input type="email" id="email" placeholder="your@email.com">
+          
+          <label>Phone</label>
+          <input type="text" id="phone" placeholder="+1 234 567 890">
+          
+          <label>Address</label>
+          <input type="text" id="address" placeholder="City, Country">
+          
+          <label>Social Links (one per line)</label>
+          <textarea id="social" placeholder="https://linkedin.com/yourprofile\nhttps://github.com/yourprofile"></textarea>
+        </div>
+        
+        <div class="action-btns">
+          <button class="btn btn-primary" onclick="generatePortfolio()"><i class="fas fa-eye"></i> Update Preview</button>
+          <button class="btn btn-secondary" onclick="downloadPortfolio()"><i class="fas fa-download"></i> Download Portfolio</button>
+          <button class="btn btn-secondary" onclick="saveToLocalStorage()"><i class="fas fa-save"></i> Save Progress</button>
+          <button class="btn btn-secondary" onclick="loadFromLocalStorage()"><i class="fas fa-folder-open"></i> Load Saved</button>
+          <button class="btn btn-secondary" onclick="resetForm()"><i class="fas fa-redo"></i> Reset Form</button>
+        </div>
+      </div>
+      
+      <!-- Preview Section -->
+      <div class="preview-section">
+        <iframe class="preview-frame" id="previewFrame" srcdoc="<html><body style='display:flex; justify-content:center; align-items:center; height:100%;'><h2 style='color:#64748b;'>Fill out the form to see your portfolio preview</h2></body></html>"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <script src="script.js"></script>
+  <script src="script.fixed.js"></script>
+</body>
+</html>
